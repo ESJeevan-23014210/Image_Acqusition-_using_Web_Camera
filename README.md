@@ -1,7 +1,6 @@
-# Image Acquisition using Web Camera
-
-### NAME: JEEVAN ES
-### REG NO: 212223230091
+# Image_Acqusition-_using_Web_Camera
+## Name: Jeevan E S
+## Register no: 212223230091
 
 ## Aim:
  
@@ -15,118 +14,115 @@ iv) Rotate and display the video
 Anaconda - Python 3.7
 ## Algorithm
 ### Step 1:
-Import the cv2 and numpy package.
-<br>
+Import OpenCV Package.
 
 ### Step 2:
-Read the Video frame using the cv2.VideoCapture(0)
-<br>
+Capture Video from Webcam. Use VideoCapture(0) to access the webcam and start capturing video.
 
 ### Step 3:
-Write the image using imwrite().
-<br>
+Read Video or Image. Utilize 'imread' to read a video frame or image from the webcam.
 
 ### Step 4:
-Display the frame using the imshow().
-<br>
+Save Image to File. Employ 'imwrite' to save the captured image to a file.
 
 ### Step 5:
-Divide the frame into halves and assign the smaller frame and Rotate the frame using the cv2.rotate().
-<br>
+Display Video or Image. Use 'imshow' to display the captured video frame or image.
+
+### Step 6:
+End Program with 'q'. Allow the program to be terminated by pressing the 'q' key.
+
 
 ## Program:
 
 ## i) Write the frame as JPG file
+
 ```
 import cv2
-import matplotlib.pyplot as plt
-from IPython.display import clear_output
-import time
-cap = cv2.VideoCapture(0)
-ret, frame = cap.read()
-if ret:
-    cv2.imwrite("captured_frame.jpg", frame)
+cap=cv2.VideoCapture(0)
+frame_number=0
+
+while frame_number<5:
+    ret,frame=cap.read()
+    cv2.imshow('frame',frame)
+    cv2.imwrite(f"frame_(frame_number).jpg",frame)
+    frame_number+=1
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 cap.release()
-captured_image = cv2.imread('captured_frame.jpg')
-plt.imshow(captured_image[:,:,::-1])
-plt.title('Captured Frame')
-plt.axis('off')
-plt.show()
+cv2.destroyAllWindows()
+
 ```
+
+
 ## ii) Display the video
-```
-cap = cv2.VideoCapture(0)
 
-for i in range(50):
-    ret, frame = cap.read()
-    if not ret:
+```
+videoCaptureObject = cv2.VideoCapture(0)
+while True:
+    ret, frame = videoCaptureObject.read()
+    cv2.imshow('myimage', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    clear_output(wait=True)
-    plt.imshow(frame_rgb)
-    plt.axis('off')
-    plt.show()
-    time.sleep(0.05)
-
-cap.release()
+videoCaptureObject.release()
+cv2.destroyAllWindows()  
 ```
+
+
 ## iii) Display the video by resizing the window
-```
-cap = cv2.VideoCapture(0)
 
-for i in range(50):
-    ret, frame = cap.read()
-    if not ret:
+```
+
+import cv2
+cap=cv2.VideoCapture(0)
+cv2.namedWindow('Video',cv2.WINDOW_NORMAL)
+while True:
+    ret,frame=cap.read()
+    cv2.imshow('Video',frame)
+    cv2.resizeWindow('Video',100,200)
+    if cv2.waitKey(1) & 0xFF ==ord('q'):
         break
-    resized_frame = cv2.resize(frame, (100, 150))  # Resize to 320x240
-    frame_rgb = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
-    clear_output(wait=True)
-    plt.imshow(frame_rgb)
-    plt.axis('off')
-    plt.show()
-    time.sleep(0.05)
-
 cap.release()
+cv2.destroyAllWindows()        
+
 ```
+
+
 ## iv) Rotate and display the video
-```
-cap = cv2.VideoCapture(0)
 
-for i in range(50):
-    ret, frame = cap.read()
-    if not ret:
+```
+
+cap=cv2.VideoCapture(0)
+rotation_angel=90
+
+while True:
+    ret,frame=cap.read()
+    rotated_frame=cv2.rotate(frame,cv2.ROTATE_90_CLOCKWISE)
+    cv2.imshow('Rotated Video',rotated_frame)
+    if cv2.waitKey(1)&0xFF==ord('q'):
         break
-    rotated_frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-    frame_rgb = cv2.cvtColor(rotated_frame, cv2.COLOR_BGR2RGB)
-    clear_output(wait=True)
-    plt.imshow(frame_rgb)
-    plt.axis('off')
-    plt.show()
-    time.sleep(0.05)
-
 cap.release()
+cv2.destroyAllWindows()  
 ```
+
 ## Output
 
 ### i) Write the frame as JPG image
 
-<img width="666" height="526" alt="image" src="https://github.com/user-attachments/assets/e216b681-b66b-4bed-9082-2afa1e207ab7" />
-
+![image](https://github.com/user-attachments/assets/4ed7be48-1799-4bef-b31d-6984c495e723)
 
 ### ii) Display the video
-<img width="651" height="488" alt="image" src="https://github.com/user-attachments/assets/17a84ff1-153f-481b-a3b5-732da9c7829b" />
 
-
+![Screenshot 2024-10-20 222524](https://github.com/user-attachments/assets/a14b8d8e-2a72-44fc-a95d-e4fdb6e581a3)
 
 ### iii) Display the video by resizing the window
 
-<img width="333" height="489" alt="image" src="https://github.com/user-attachments/assets/4387ad5b-abb1-489c-a02f-c6f01122b552" />
+![image](https://github.com/user-attachments/assets/64d10f12-5af6-4247-b11a-887a6615e808)
+
 
 
 ### iv) Rotate and display the video
-<img width="360" height="478" alt="image" src="https://github.com/user-attachments/assets/1e1da2b3-5709-419d-92a9-8c9676e311e3" />
 
-
+![image](https://github.com/user-attachments/assets/63b308f0-8e16-4447-9ecf-cb7174833b4c)
 
 
 ## Result:
